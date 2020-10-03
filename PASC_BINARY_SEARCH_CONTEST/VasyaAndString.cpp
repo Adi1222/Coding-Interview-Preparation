@@ -12,8 +12,6 @@ Output
 Print the only integer — the maximum beauty of the string Vasya can achieve by changing no more than k characters.
 */
 
-/*
-
 #include <iostream>
 #include <algorithm>
 #include <math.h>
@@ -76,5 +74,3 @@ int main()
 
     return 0;
 }
-
-*/

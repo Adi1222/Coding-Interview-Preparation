@@ -9,8 +9,7 @@ Chef likes to eat slowly, but still wants to finish eating all the bananas on ti
 
 
 
-
-
+*/
 
 #include <iostream>
 #include <algorithm>
@@ -21,87 +20,76 @@ int arr[100005];
 
 bool canEatBananas(int mid, int n, int h)
 {
-	// 1
-	
-	int req = 0;
-	
-	for(int i = 0; i < n; i++)
-	{
-		req += (int)ceil((double)arr[i]/(double)mid);
-	}
-	
-	if(req <=  h)
-	{
-		return true;
-	}
-	
-	return false;
-	 
+    // 1
+
+    int req = 0;
+
+    for (int i = 0; i < n; i++)
+    {
+        req += (int)ceil((double)arr[i] / (double)mid);
+    }
+
+    if (req <= h)
+    {
+        return true;
+    }
+
+    return false;
 }
 
 int BS(int n, int h)
 {
-	int low = 1; // 1 banana per hour
-	int high = arr[n - 1];
-	
-	while(high - low > 1)
-	{
-		int mid = low + (high - low) / 2;
-		
-		if(canEatBananas(mid, n, h))
-		{
-			high = mid;
-		}
-		else
-		{
-			low = mid + 1;
-		}
-	}
-	
-	if(canEatBananas(low, n, h))
-	{
-		return low;
-	}
-	if(canEatBananas(high, n, h))
-	{
-		return high;
-	}
-	
-	
-	return 0;
-	
+    int low = 1; // 1 banana per hour
+    int high = arr[n - 1];
+
+    while (high - low > 1)
+    {
+        int mid = low + (high - low) / 2;
+
+        if (canEatBananas(mid, n, h))
+        {
+            high = mid;
+        }
+        else
+        {
+            low = mid + 1;
+        }
+    }
+
+    if (canEatBananas(low, n, h))
+    {
+        return low;
+    }
+    if (canEatBananas(high, n, h))
+    {
+        return high;
+    }
+
+    return 0;
 }
 
-int main() 
+int main()
 {
-	// your code goes here
-	ios_base::sync_with_stdio(0);
-	cin.tie(0);
-	
-	
-	int t, n, h; // n --> no. of piles k ---> no. of hours
-	cin>>t;
-	
-	while(t--)
-	{
-		cin >> n >> h;
-		
-		for(int i = 0; i < n; i++)
-		{
-			cin >> arr[i];
-		}
-		
-		sort(arr, arr + n);
-		
-		cout << BS(n, h) << endl;
-		
-		
-		
-	}
-	
-	return 0;
+    // your code goes here
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+
+    int t, n, h; // n --> no. of piles k ---> no. of hours
+    cin >> t;
+
+    while (t--)
+    {
+        cin >> n >> h;
+
+        for (int i = 0; i < n; i++)
+        {
+            cin >> arr[i];
+        }
+
+        sort(arr, arr + n);
+
+        cout << BS(n, h) << endl;
+    }
+
+    return 0;
 }
-
-
-
-*/

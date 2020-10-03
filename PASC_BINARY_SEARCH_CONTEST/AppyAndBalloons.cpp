@@ -11,6 +11,9 @@ The third line contains N space-separated integers B1,B2,…,BN.
 Output
 Print a single line containing one integer — the minimum value of max(C1,C2,C3,…,CN).
 
+*/
+
+
 
 #include <iostream>
 #include <algorithm>
@@ -21,88 +24,83 @@ using namespace std;
 typedef long long ll;
 typedef long double ld;
 
-ll a[N],b[N];
-ll n,m;
+ll a[N], b[N];
+ll n, m;
 
 bool isPossible(ll mid)
 {
-	ll req = 0;
-	
-	for(int i = 0; i < n; i++)
-	{
+    ll req = 0;
 
-		ll temp = a[i] - (mid/b[i]);
-		
-		if(temp > 0)
-		{
-			req += temp;
-		}
-	}
-	 
-	 
-	 if(req > m)
-	 {
-	 	return false;
-	 }
-	 
-	 return true;
+    for (int i = 0; i < n; i++)
+    {
+
+        ll temp = a[i] - (mid / b[i]);
+
+        if (temp > 0)
+        {
+            req += temp;
+        }
+    }
+
+    if (req > m)
+    {
+        return false;
+    }
+
+    return true;
 }
 
 int BS(ll h)
 {
-	ll low = 0;
-	ll high = h;
-	
-	while(low < high)
-	{
-		ll mid = low + (high - low) / 2;
-		
-		if(isPossible(mid))
-		{
-			high = mid;
-		}
-		else
-		{
-			low = mid + 1;
-		}
-	}
-	
-	cout << low << endl;
-	
-	return 0;
-	
+    ll low = 0;
+    ll high = h;
+
+    while (low < high)
+    {
+        ll mid = low + (high - low) / 2;
+
+        if (isPossible(mid))
+        {
+            high = mid;
+        }
+        else
+        {
+            low = mid + 1;
+        }
+    }
+
+    cout << low << endl;
+
+    return 0;
 }
 
-int main() 
+int main()
 {
-	// your code goes here
-	
-	ios_base::sync_with_stdio(0);cin.tie(0);
- 
-    cin>>n>>m;
- 
-    for(int i=0;i<n;i++)
+    // your code goes here
+
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+
+    cin >> n >> m;
+
+    for (int i = 0; i < n; i++)
     {
-        cin>>a[i];
+        cin >> a[i];
     }
- 
-    for(int i=0;i<n;i++)
+
+    for (int i = 0; i < n; i++)
     {
-        cin>>b[i];
+        cin >> b[i];
     }
-    
+
     ll h = 0;
-    
-    for(int i=0;i<n;i++)
+
+    for (int i = 0; i < n; i++)
     {
-        h = max(h, a[i]*b[i]);
+        h = max(h, a[i] * b[i]);
     }
-    
+
     BS(h);
-	
-	return 0;
+
+    return 0;
 }
-
-
-
-*/
