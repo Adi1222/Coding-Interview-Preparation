@@ -13,8 +13,6 @@ Print a single line containing one integer — the minimum value of max(C1,C2,C3
 
 */
 
-
-
 #include <iostream>
 #include <algorithm>
 #include <bits/stdc++.h>

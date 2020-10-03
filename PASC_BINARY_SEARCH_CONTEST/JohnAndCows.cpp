@@ -10,6 +10,9 @@ t – the number of test cases, then t test cases follows.
 Output
 For each test case output one integer: the largest minimum distance.
 */
+
+
+
 #include <iostream>
 #include <algorithm>
 #include <bits/stdc++.h>

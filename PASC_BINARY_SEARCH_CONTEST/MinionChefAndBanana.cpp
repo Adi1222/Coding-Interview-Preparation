@@ -7,8 +7,6 @@ Suppose Chef has an eating speed of K bananas per hour. Each hour, she will choo
 
 Chef likes to eat slowly, but still wants to finish eating all the bananas on time. Therefore, she would like to choose the minimum K such that she is able to eat all the bananas in H hours. Help Chef find that value of K.
 
-
-
 */
 
 #include <iostream>

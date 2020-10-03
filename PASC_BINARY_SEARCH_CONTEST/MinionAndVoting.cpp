@@ -11,8 +11,8 @@ The first line of the input contains a single integer T denoting the number of t
 The first line of each test case contains a single integer N denoting the number of minions.
 The second line contains N space-separated integers S1, S2, ..., SN.
 Output
-
 */
+
 #include <bits/stdc++.h>
 
 #define ll long long
