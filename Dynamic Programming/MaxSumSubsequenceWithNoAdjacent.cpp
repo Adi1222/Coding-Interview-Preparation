@@ -9,6 +9,7 @@ using namespace std;
 
 int main()
 {
+
     vector<int> nums = {1, 2, 9, 4, 5, 0, 4, 11, 6};
     const int N = nums.size();
 
