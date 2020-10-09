@@ -11,11 +11,11 @@ The third line contains N space-separated integers B1,B2,…,BN.
 Output
 Print a single line containing one integer — the minimum value of max(C1,C2,C3,…,CN).
 
-*/
 
+*/
 #include <iostream>
 #include <algorithm>
-#include <bits/stdc++.h>
+#include <__msvc_all_public_headers.hpp>
 #define N 100005
 using namespace std;
 
