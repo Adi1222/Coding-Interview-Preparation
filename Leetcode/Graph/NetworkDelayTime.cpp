@@ -11,9 +11,9 @@ Now, we send a signal from a certain node K. How long will it take for all nodes
 */
 
 /* The idea is to find the minimum distance from the siurse to any node 
-
     At the end the answer will be the distance of the farthest node from the source.
-  */
+  
+*/
 
 class Solution
 {
