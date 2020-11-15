@@ -1,5 +1,5 @@
 #include <iostream>
-#include <bits/stdc++.h>
+#include <vector>
 #define mod 1000000007
 #define int long long int
 using namespace std;
