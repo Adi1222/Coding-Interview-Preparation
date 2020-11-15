@@ -4,8 +4,6 @@
 #define int long long int
 using namespace std;
 
-// T.C : O(n^2)
-
 signed main()
 {
     ios_base::sync_with_stdio(0);
@@ -37,10 +35,10 @@ signed main()
             if (grid[i][j] == '.')
             {
                 if (i > 0)
-                    (dp[i][j] += dp[i - 1][j]) % mod;
+                    (dp[i][j] += dp[i - 1][j]) %= mod;
 
                 if (j > 0)
-                    (dp[i][j] += dp[i][j - 1]) % mod;
+                    (dp[i][j] += dp[i][j - 1]) %= mod;
             }
             else
             {
