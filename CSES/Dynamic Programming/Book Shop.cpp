@@ -1,10 +1,9 @@
 #include <iostream>
 #include <bits/stdc++.h>
 #define mod 1000000007
-#define int long long int
 using namespace std;
 
-signed main()
+int main()
 {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
@@ -31,11 +30,12 @@ signed main()
 
     for (int i = 1; i <= n; i++)
     {
-        for (int j = 1; j <= x; j++)
+        for (int j = 0; j <= x; j++)
         {
 
             dp[i][j] = dp[i - 1][j];
 
+    
             if (price[i - 1] <= j)
             {
                 // now we have have 2 options
