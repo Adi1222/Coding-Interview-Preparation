@@ -4,7 +4,7 @@ Given an 2D integer array A of size N x 2 denoting time intervals of different m
 
     A[i][0] = start time of the ith meeting.A[i][1] = end time of the ith meeting.Find the minimum number of conference rooms required so that all meetings can be done.
 
-                                                      int Solution::solve(vector<vector<int>> & A)
+int Solution::solve(vector<vector<int>> & A)
 {
 
     if (A.size() == 0)
