@@ -11,6 +11,7 @@ int main()
     vector<int> vt = {1, 2, 1, 3, 4, 2, 3};
     int k = 4;
     const int n = vt.size();
+
     unordered_map<int, int> mp;
 
     int cnt = 0;
