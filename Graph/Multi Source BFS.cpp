@@ -3,6 +3,8 @@
 #include <queue>
 using namespace std;
 
+// T.C O(v + e)
+
 vector<int> adj[10001];
 vector<int> vis(1001);
 
