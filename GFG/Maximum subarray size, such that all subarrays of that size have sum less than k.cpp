@@ -20,7 +20,6 @@ int main()
     }
 
     int ans = -1;
-
     int left = 1, right = n;
 
     while (left <= right)
