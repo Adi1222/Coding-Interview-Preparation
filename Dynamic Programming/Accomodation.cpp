@@ -52,6 +52,5 @@ signed main()
     }
 
     cout << dp[m][n] << " ";
-
     return 0;
 }
