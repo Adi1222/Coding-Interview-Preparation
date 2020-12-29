@@ -6,6 +6,6 @@ The strategy I am following to prepare for Data Structures / Algorithms for Codi
 
 ### Do star, fork and share the repo to show your support, it would help others too!
 
-### Let me know your views on the repository or any changes or improvements and if you wish to contribute too.
-
 [linkedin]: www.linkedin.com/in/aditya-chavan-819a73192
+
+### Let me know your views on the repository or any changes or improvements and if you wish to contribute too.
