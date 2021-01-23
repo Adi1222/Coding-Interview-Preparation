@@ -35,7 +35,6 @@ public:
         return dp[ind] = min({oneday, sevendays, thirtydays});
     }
 
-
     int mincostTickets(vector<int> &days, vector<int> &costs)
     {
 
