@@ -1,13 +1,6 @@
 /*
-// Sample code to perform I/O:
-
-cin >> name;                            // Reading input from STDIN
-cout << "Hi, " << name << ".\n";        // Writing output to STDOUT
-
-// Warning: Printing unwanted or ill-formatted data to output will cause the test cases to fail
+    Aditya Chavan
 */
-
-// Write your code here
 
 #include <iostream>
 #include <bits/stdc++.h>
