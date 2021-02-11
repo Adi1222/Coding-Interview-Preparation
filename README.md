@@ -8,4 +8,4 @@ The strategy I am following to prepare for Data Structures / Algorithms for Codi
 
 ### Let me know your views on the repository or any changes or improvements and if you wish to contribute too.
 
-[linkedin] https://www.linkedin.com/in/aditya-chavan-819a73192
+[linkedin] https://www.linkedin.com/in/adityachavan1222
