@@ -23,37 +23,24 @@ int main()
 
     int cnt = 0;
 
-    multiset<int> ms;
+    priority_queue<int, vector<int>, greater<int>> pq;
 
-    for (int i = 0; i < N; i++)
+    for (int i = 0; i < n; i++)
     {
-        int flag = 0;
-        if (!ms.empty())
+
+        while (!pq.empty() && pq.top() <= vp[i].first)
         {
-            auto it = ms.lower_bound(vp[i].first);
-
-            if (it != ms.end())
-            {
-                if (*it <= vp[i].first)
-                {
-                    ms.erase(it); // deleting the previously visited shop b'coz at one time any person can visit only one shop
-
-                    ms.insert(vp[i].second);
-
-                    cnt += 1;
-                    flag = 1;
-                }
-            }
+            pq.pop();
         }
 
-        if (!flag && ms.size() < k)
+        if (pq.size() < k)
         {
+            pq.push(vp[i].second);
             cnt += 1;
-            ms.insert(vp[i].second);
         }
     }
 
-    cout << count << " ";
+    cout << cnt << " ";
 
     return 0;
 }
