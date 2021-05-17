@@ -87,3 +87,59 @@ int main()
 
     return 0;
 }
+
+/*
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() 
+{
+	
+	// ******************** O(N^2) approach ************************
+	
+	string str = "aabcbcdbca";
+	const int n = str.length();
+	
+	
+	int dis;
+	
+	string result;
+
+	int ans = INT_MAX;
+
+	for(int i = 0; i < n; i++)
+	{
+		memset(arr, 0, sizeof(arr));
+		
+		string temp = "";
+		int cnt  = 0;
+		
+		for(int j = i; j < n; j++)
+		{
+			if(arr[str[j] - 'a'] == 0)
+			{
+				cnt += 1;
+			}
+			
+			arr[str[j] - 'a']++;
+			
+			temp += str[j];
+			
+			if(cnt == dis)
+			{
+				if(temp.length() < ans)
+				{
+					ans = temp.length();
+					result = temp;
+				}
+			}
+		}
+	}
+	
+	
+	cout<<result<<" ";
+	
+	return 0;
+}
+*/
