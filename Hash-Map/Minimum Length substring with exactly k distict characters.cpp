@@ -27,6 +27,21 @@ int main()
 
         freq[str[r] - 'a']++;
 
+        if (distinct > k)
+        {
+            while (l < r && distinct > k)
+            {
+                freq[str[l] - 'a']--;
+
+                if (freq[str[l] - 'a'] == 0)
+                {
+                    distinct--;
+                }
+
+                l++;
+            }
+        }
+
         if (distinct == k)
         {
             // removing characters from the beginning which have count more than 1
@@ -43,24 +58,39 @@ int main()
                 start = l;
             }
         }
-
-        if (distinct > k)
-        {
-            while (l < r && distinct > k)
-            {
-                freq[str[l] - 'a']--;
-
-                if (freq[str[l] - 'a'] == 0)
-                {
-                    distinct--;
-                }
-
-                l++;
-            }
-        }
     }
 
     cout << str.substr(start, ans);
 
     return 0;
 }
+
+/*
+    other implementation (^_^) 
+
+    int cnt = k;
+
+
+    for(r = 0; r < n; r++)
+    {
+        if(++freq[str[r] - 'a'] == 1)
+        {
+            cnt -= 1;
+        }
+
+        while(l < r && cnt == 0)
+        {
+            if(r - l + 1 < ans)
+            {
+                ans = r - l + 1;
+                start = l;
+            }
+
+            if(--freq[str[l] - 'a'] == 0)
+            {
+                cnt += 1;
+            }
+        }
+    }
+
+*/
