@@ -66,7 +66,7 @@ int main()
 }
 
 /*
-    other implementation (^_^) 
+    other implementation (^_^) ()
 
     int cnt = k;
 
