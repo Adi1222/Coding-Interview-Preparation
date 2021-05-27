@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-// O(N) T.C
+// O(max(len(LL1), len(LL2))) T.C
 
 /* C Lang*/
 
