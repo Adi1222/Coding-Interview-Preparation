@@ -455,6 +455,178 @@ void vertical_sum(Node *rt, int hd, ma<int, int> &mp)
 	vertical_sum(rt->right, hd + 1, mp);
 }
 
+int diameter(Node *cur) // MAX distance between any two leaf nodes 0(N^2) Approach
+{
+	if (cur == NULL)
+		return 0;
+
+	int lht = heigth(cur->left);
+	int rht = height(cur->right);
+
+	int ldiameter = diameter(cur->left);
+	int rdiameter = diameter(cur->right);
+
+	return max(lht + rht + 1, max(ldiameter, rdiameter));
+}
+
+int diameter_of_tree(Node *cur, int &dia) // O(N) T.C
+{
+	// base case
+	if (cur == NULL)
+	{
+		return 0;
+	}
+
+	if (cur->left == NULL && cur->right == NULL)
+	{
+		return 1;
+	}
+
+	int lh = diamter_of_tree(cur->left);
+	int rht = diameter_of_tree(cur->right);
+
+	// updating our answer which is passed by reference
+
+	diam = max(diam, lh + rht + 1);
+
+	return max(lh + rht) + 1; // this is just hiving us height of each node
+}
+
+void get_deepest_left_leaf_node(Node *cur, int level, bool left, int &deep)
+{
+	// base condition
+	if (cur == NULL)
+		return;
+
+	if (cur->left == NULL && cur->right == NULL && left)
+	{
+		if (level > deep)
+		{
+			deep = level;
+			ans = cur;
+		}
+	}
+
+	get_deepest_left_leaf_node(cur->left, level + 1, true);
+	get_deepest_left_leaf_node(cur->right, level + 1, false);
+}
+
+Node *LCA(Node *cur, int n1, int n2) // T.C O(N)
+{
+	// base condition
+	if (cur == NULL)
+	{
+		return NULL;
+	}
+
+	if (cur->data == n1 || cur->data == n2)
+		return cur;
+
+	Node *l = LCA(cur->left, n1, n2);
+	Node *r = LCA(cur->right, n1, n2);
+
+	if (l && r)
+		return cur;
+
+	return (l != NULL) ? l : r;
+}
+
+bool hasPath(Node *cur, vector<int> &arr, int index) //Check if there is a root to leaf path with given sequence
+{
+	if (cur == NULL)
+		return false;
+
+	if (cur->data != arr[index])
+		return false;
+
+	if (cur->left == NULL && cur->right == NULL)
+	{
+		if (cur->data == arr[index] && index == arr.size() - 1)
+			return true;
+
+		return false;
+	}
+
+	return (cur->data == arr[index] && (hasPath(cur->left, arr, index + 1) || hasPath(cur->right, arr, index + 1)));
+}
+
+int longest_univalue_path(Node *cur, int &ans) /*** HARD O(N) ***/
+{
+	// base case
+	if (cur == NULL)
+		return 0;
+
+	int lht = longest_univalue_path(cur->left, ans);
+	int rht = longest_univalue_path(cur->right, ans);
+
+	int l = 0, r = 0;
+
+	if (cur->left && cur->data == cur->left->data)
+	{
+		l += lht + 1;
+	}
+
+	if (cur->right && cur->data == cur->right->data)
+	{
+		r += rht + 1;
+	}
+
+	ans = max(ans, l + r);
+
+	return max(l, r);
+}
+
+bool does_pair_exist(Node *cur, unordered_set<int> &st) // T.C O(N) S.C O(N)
+{
+	if (cur == NULL)
+		return false;
+
+	if (st.count(sum - cur->data) != 0)
+		return true;
+
+	st.insert(cur->data);
+
+	if (does_pair_exist(cur->left, st))
+		return true;
+
+	return does_pair_exist(cur->right, st);
+}
+
+vector<int> longest_root_to_leaf(Node *cur) // T.C O(N) S.C O(N)
+{
+	if (cur == NULL)
+		return {};
+
+	vector<int> l = longest_root_to_leaf(cur->left);
+	vector<int> r = longest_root_to_leaf(cur->right);
+
+	if (l.size() > r.size())
+		l.push_back(cur->data);
+
+	else
+		r.push_back(cur->data);
+
+	return (l.size() > r.size()) ? l : r;
+}
+
+void print_root_to_every_leaf_path(Node *cur, vector<int> &arr) // T.C O(N) S.C(N)
+{
+	if (cur == NULL)
+		return;
+
+	arr.push_back(cur->data);
+
+	if (cur->left == NULL && cur->right == NULL)
+	{
+		res.push_back(ans);
+	}
+
+	print_root_to_every_leaf_path(cur->left, arr);
+	print_root_to_every_leaf_path(cur->right, arr);
+
+	arr.pop_back();
+}
+
 int main()
 {
 	// your code goes here
