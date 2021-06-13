@@ -8,8 +8,7 @@ using namespace std;
 //  The height of a skewed tree may become n and the time complexity of search and insert operation may become O(n). 
 
 Node* findmin(Node* rt)
-{
-	
+{	
 }
 
 Node* deleteNode(Node* rt, int key) // T.C O(h)
