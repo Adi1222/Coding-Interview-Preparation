@@ -217,8 +217,152 @@ bool node_to_root_path(Node* cur, int key)
 	}
 	
 	return false;
-	
 }
+
+Node* getParent(Node* rt, int key) // Recursive
+{
+	if(rt == NULL)
+	{
+		return NULL;
+	}
+	
+	if(rt->data == key)
+		return NULL;
+		
+	if( (rt->left && rt->left->data == key) || (rt->right && rt->right->data == key) )
+		return rt;
+	
+	
+	if(rt->data > key)
+	{
+		Node* temp = NULL;
+		temp = getParent(rt->left, key);
+		
+		if(temp != NULL)
+		{
+			return temp;
+		}
+	}
+	else
+	{
+		Node* temp = NULL;
+		temp = getParent(rt->right, key);
+		
+		if(temp != NULL)
+		{
+			return temp;
+		}
+	}
+	
+	return NULL;
+}
+
+Node* get_parent_node(Node* rt, int key) // T.C O(logN)
+{
+	if(rt == NULL)
+		return NULL;
+		
+	Node* par = NULL;
+	
+	while(rt != NULL)
+	{
+		if(rt->data > key)
+		{
+			par = rt;
+			rt = rt->left;
+		}
+		else if(rt->data < key)
+		{
+			par = rt;
+			rt = rt->right;
+		}
+		else
+		{
+			break;
+		}	
+	}
+	
+	return par;
+}
+
+
+Node* get_sibling_node(Node* rt, int key) //  T.C O(logN)
+{
+	if(rt == NULL)
+		return NULL;
+
+	Node* par = NULL;
+	
+	while(rt != NULL)
+	{
+		if(rt->data > key)
+		{
+			par = rt;
+			rt = rt->left;
+		}
+		else if(rt->data < key)
+		{
+			par = rt;
+			rt = rt->right;
+		}
+		else
+		{
+			break;
+		}	
+	}
+	
+	if(rt == NULL)
+		return NULL;
+	
+	if(par == NULL)
+	{
+		return NULL;
+	}
+	
+	if(par->left == key)
+	{
+		return par->right;
+	}
+	
+	return par->left;
+} 
+
+Node* get_inorder_parent(Node* rt)
+{
+	if(rt == NULL)
+		return NULL;
+	
+	
+	Node* inorderPar = NULL;
+	
+	while(rt != NULL)
+	{
+		if(rt->data > key)
+		{
+			inorderPar = rt;
+			rt = rt->left;
+		}
+		else if(rt->data < key)
+		{
+			rt = rt->right;
+		}
+		else
+		{
+			break;
+		}
+	}
+	
+	return rt == NULL ? NULL : inorderPar;
+}
+
+int get_diff_even_odd_level(Node* rt)
+{
+	if(rt == NULL)
+		return 0;
+	 
+	return rt->data - get_diff_even_odd_level(rt->left) - get_diff_even_odd_level(rt->right);
+}
+
 
 int main() 
 {
