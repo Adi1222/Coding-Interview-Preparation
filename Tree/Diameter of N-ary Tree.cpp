@@ -104,7 +104,7 @@ int diameter(Node* node)
 	
 	for(vector<Node*>::iterator itr = node->children.begin(); itr != node->children.end(); itr++)
 	{
-		int height = ht(*itr);
+		int height = diameter(*itr);
 		
 		if(height > max1)
 		{
@@ -125,6 +125,95 @@ int diameter(Node* node)
 	return max(max1, max2) + 1; // this return the max height of a node
 }
 
+
+
+/************************************* dp Approach **************************************/
+
+
+int findHeight(int src, int par)
+{
+	int mx = 0;
+	ht[src] = 0;
+	
+	bool leaf = 1;
+	
+	for(int child : adj[src])
+	{
+		if(child != par)
+		{
+			leaf = 0;
+			mx = max(mx, findHeight(child, src));
+		}
+		
+	}
+	
+	return ht[src] = (leaf == 1) ? 0 : 1 + mx; // store that in ht array
+}
+
+// another way to calculate height
+void findHeight_2(int src, int par)
+{
+	int mx = 0;
+	
+	int leaf = 1;
+	
+	for(int child : adj[src])
+	{
+		if(child != par)
+		{
+			leaf = 0;
+			findHeight_2(child, src);
+			mx = max(mx, ht[child]);
+		}
+	}
+	
+	if(leaf)
+	{
+		ht[src] = 0;
+	}
+	else
+	{
+		ht[src] = 1 + mx;
+	}
+}
+
+
+void solve(int src, int par)
+{
+	int mx = 0;
+	
+	vector<int>childrenHeights;
+	
+	for(int child : adj[src])
+	{
+		if(child != par)
+		{
+			solve(child, src);
+			childrenHeights.push_back(child);
+			mx = max(mx, dp[child]);
+		}
+	}
+	
+	
+	int sz = childrenHeights.size();
+	
+	sort(childrenHeights.begin(), childrenHeights.end(), greater<int>());
+	
+	if(childrenHeights.size() == 0)
+	{
+		dp[src] = 0;
+	}
+	else if(childrenHeights.size() == 1)
+	{
+		dp[src] = 1 + childrenHeights[0];
+	}
+	else
+	{
+		dp[src] = 2 + childrenHeights[0] + childrenHeights[1];
+	}
+	
+	dp[src] = max(dp[src], mx);
+}
 
 
 int main() 
