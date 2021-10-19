@@ -627,6 +627,123 @@ void print_root_to_every_leaf_path(Node *cur, vector<int> &arr) // T.C O(N) S.C(
 	arr.pop_back();
 }
 
+
+
+
+// maximum path sum between any two nodes
+int solve(Node* node)  // T.C o(n)
+{
+	if(root)
+		return 0;
+		
+	int l = solve(root->right);
+	int r = solve(root->left);
+	
+	
+	int temp = max(max(l, r) + node->data, node->data);
+	
+	
+	int temp2 = max(temp, l + r + node->data);
+	
+	ans = max(ans, temp2);
+
+	return temp;
+}
+
+
+// diagonal sum using a queue
+
+void solve()
+{
+	queue<Node*>q;
+	
+	int sum = 0;
+	int cnt = 0;
+	int temp = 0;
+	
+	while(cur != NULL || !q.empty())
+	{
+		if(cur != NULL)
+		{	
+			if(cur->left)
+			{
+				q.push(cur->left);
+				cnt += 1;
+			}
+		}
+		
+		sum += cur->data;
+		cur = cur->right;
+		
+		if(cur == NULL)
+		{
+			if(!q.empty())
+			{
+				cur = q.top();
+			}
+			if(temp == 0)
+			{
+				ans.push_back(sum);
+				sum = 0;
+				temp = cnt;
+			}
+			
+			temp -= 1;
+			
+		}
+		
+	}
+}
+
+// follow up question for diameter of tree ---> print the longest leaf to leaf path
+/*
+	First you'll follow the same approach as of diameter of tree
+	store the node addres from which the diamter passes (this is done in the diamter calculating function)
+	Once we know the node's address, it becomes easy to print the max left path and max right path from that node 
+*/
+
+int diamter(..,Node** temp_node , int& lh , int& rh ,..)
+{
+	if() // base 
+		return 0;
+		
+	int l = ;
+	int r = ;
+	
+	if(ans < l + r + 1)
+	{
+		ans = l + r + 1;
+		
+		temp_node* = node;
+		
+		lh = l; // we also store height
+		rh - r;
+	}
+	
+	return 1 + max(l, r); // this just gives us height
+}
+
+// once you have calculated the node's address , print the left and right path (to leaf)
+
+void printPath()
+{
+	if()
+		return;
+		
+	path[idx++] = node->data;
+	
+	if(node->left == NULL && node->right == NULL)
+	{
+		if(idx == lh)
+		{
+			printfunc(path, idx);
+		}
+	}
+
+	printPath(go_to_left);
+	printPath(go_to_right);
+}
+
 int main()
 {
 	// your code goes here
