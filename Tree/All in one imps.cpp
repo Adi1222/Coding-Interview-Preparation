@@ -744,6 +744,247 @@ void printPath()
 	printPath(go_to_right);
 }
 
+
+/********   Print all k-sum paths in a binary tree   ********/
+void solve() // T.C O(n*h)
+{
+	if()
+		return ;
+		
+	ans.push_back(node->data);
+	
+	solve(left);
+	
+	solve(right);
+	
+	// checking whether ther's any path ending at this node
+	// we need to check this before we pos the eleent from the ans vector i.e 
+	// before we backtrack, otherwise ww'll lose the element
+	
+	int sum = 0;
+	
+	for(int i = ans.size(); i >- 0; i--) // at a time at mas o(h) h elements can be there in ans vector
+	{
+		sum += ans[i];
+		if(sum == target)
+			print path
+	}
+	
+	ans.pop_back();
+}
+
+
+bool areIdentical()
+{
+	if(a == null && b == null)
+		return true;
+		
+	if(a == null || b == null)
+		return false;
+		
+	return ( a->data == b->data && areIdentical(a, b->left)  && areIdentical(a, b->right));
+}
+
+bool isSubtree(a, b)
+{
+	if(b == null)
+		return treu;
+		
+	if(a == null)
+		return false;
+		
+	if(areIdentical(a, b))
+		return true;
+		
+	if(isSubstree(a->left, b) || isSubtree(a->right, b))
+		return true;
+}
+
+
+int solve()
+{
+	if(node == NULL)
+		return 0;
+		
+	int l = solve();
+	int r = solve();
+	
+	
+	int L = 0, R = 0;
+	
+	if(node->left && node->left->data == node->data)
+	{
+		L += l + 1;
+	}
+	
+	
+	if(node->right && node->right->data == node->data)
+	{
+		R += r + 1;
+	}
+	
+	return max(L, R);
+}
+
+
+/*************    Maximum Consecutive Increasing Path Length in Binary Tree                 ******************/
+
+int solve()
+{
+	if(node == NULL)
+		return 0;
+		
+	
+	int l = solve(node->left);
+	int r = solve(node->right);
+	
+	
+	int L = 0, R = 0;
+	
+	if(node->left && (node->left->val == (node->val + 1)))
+	{
+		L += l + 1;
+	}
+	
+	
+	if(node->right && (node->right->val == (node->val + 1)))
+	{
+		R += r + 1;
+	}
+	
+	
+	return max(L, R);
+}
+
+vector<int> min_root_to_leaf(Node* node)
+{
+	if(node == NULL)
+		return {};
+		
+	vector<int> l = min_root_to_leaf(node->left);
+	vector<int> r = min_root_to_leaf(node->right);
+	
+	
+	if(l.size() < r.size())
+	{
+		l.push_back(node->data);
+	}
+	else
+	{
+		r.push_back(node->data);
+	}
+	
+	return (l.size() < r.size()) ? l : r;
+}
+
+/***********************       Closest leaf to a given node in Binary Tree          **************************/
+
+
+// T.C O(n*h)
+
+int solve(Node* node, int target, int arr[], int level)
+{
+	if(node == NULL)
+		return INT_MAX;
+	
+	
+	if(node->data == target)
+	{
+		int temp = find_min_dist_to_leaf(node);
+		
+		for(int i = level - 1; i >= 0 ; i--)
+		{
+			temp = min(temp, level - i + find_min_dist_to_leaf(arr[i]));
+		}
+		
+		return temp;
+	}
+	
+	arr[level] = node;
+	
+	int x = solve(node->left, target, arr, level + 1);
+	
+	if(x != INT_MAX)
+	{
+		return x;
+	}
+	
+	return solve(node->right, target, arr, level + 1);
+}
+
+
+int find_min_dist_to_leaf(Node* node)
+{
+	if(node == NULL)
+		return INT_MAX;
+		
+	if(node->left == NULL && node->right == NULL)
+	{
+		return 0;
+	}
+	
+	return 1 + min(find_min_dist_to_leaf(node->left), find_min_dist_to_leaf(node->right));
+}
+
+
+
+/*************************      Print path from root to a given node in a binary tree              *************************************/
+
+
+void path(Node* node, vector<int> arr, int target)
+{
+	if(node == NULL)
+	{
+		return false;
+	}
+	
+	arr.push_back(node->data);
+	
+	
+	if(node->data == target)
+		return true;
+		
+	
+	if(solve(node->left, arr, target) || solve(node->right, arr, target))
+		return true;
+	
+	
+	arr.pop_back();  // important step
+	
+	return false;
+	
+}
+
+/**** Check if there is a root to leaf path with given sequence **/
+
+bool path(Node* node, int idx, vectorint>& seq)
+{
+	if(node == NULL) // base 
+		return false;
+	
+	if(node->data != seq[idx]) 
+		return false;
+		
+	
+	if(node->left == NULL && node->right == NULL) // terminating conditon is important
+	{
+		if(idx == seq.size() - 1)
+			return true;
+		
+		return false;
+	}
+	
+	return (seq[idx] == node->data && ( path(node->left, idx + 1, seq ) || path(node->right, idx + 1, seq) ) );
+	
+}
+
+
+
+
+
+
+
+
 int main()
 {
 	// your code goes here
