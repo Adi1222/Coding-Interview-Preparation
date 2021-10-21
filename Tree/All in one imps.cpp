@@ -980,6 +980,81 @@ bool path(Node* node, int idx, vectorint>& seq)
 
 
 
+/*********************    Print all nodes at distance k from a given node       **********************/
+
+
+void printNodes(Node* node, int k)
+{
+	if(node == NULL || k < 0)
+		return;
+		
+	if(k == 0)
+	{
+		cout<<node->data;
+		return;
+	}
+	
+	
+	printNodes(node->left, k - 1);
+	printNodes(node->right, k - 1);
+	
+}
+
+
+int solve(Node* node, int target, int k)
+{
+	if(node == NULL)
+		return -1;
+		
+	if(node->data == target)
+	{
+		printNodes(node, k);  printing nodes at k dist in the substree of the current node
+		return 0;
+	}
+	
+	
+	int L = solve(node->left, target, k);
+	
+	if(L != -1)
+	{
+		if(L + 1 == k)
+		{
+			cout<<node->data<<endl;
+		}
+		else
+		{
+			printNodes(node, k - L - 1);
+		}
+		
+		return 1 + L;
+	}
+	
+	int R = solve(node->right, target, k);
+	
+	if(R != -1)
+	{
+		// do the same for right child also
+		if(R + 1 == k)
+		{
+			cout<<node->data<<endl;
+		}
+		else
+		{
+			printNodes(node, k - R - 1);
+		}
+		
+		return 1 + R;
+		
+	}
+	
+	// Not found in L as well as R
+	// so return -1
+	
+	return -1;
+	
+}
+
+
 
 
 
