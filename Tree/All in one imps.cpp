@@ -1023,7 +1023,7 @@ int solve(Node* node, int target, int k)
 		}
 		else
 		{
-			printNodes(node, k - L - 1);
+			printNodes(node->right, k - L - 1);
 		}
 		
 		return 1 + L;
@@ -1040,7 +1040,7 @@ int solve(Node* node, int target, int k)
 		}
 		else
 		{
-			printNodes(node, k - R - 1);
+			printNodes(node->left, k - R - 1);
 		}
 		
 		return 1 + R;
