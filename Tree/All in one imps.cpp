@@ -227,7 +227,7 @@ void reverse_level_order(Node *rt) // ***************  Without Recursion using 1
 
 	stack<Node *> st;
 
-	while (!st.empty())
+	while (!q.empty())
 	{
 		Bode *temp = q.front();
 
