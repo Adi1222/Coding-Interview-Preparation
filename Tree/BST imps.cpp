@@ -364,6 +364,35 @@ int get_diff_even_odd_level(Node* rt)
 }
 
 
+
+Node* inorderPredecessor(Node* rt, Node* pre, int key)
+{
+	if(rt == NULL)
+	{
+		return rt;
+	}
+
+	if(rt->data == key)
+	{
+		if(rt->left != NULL)
+		{
+			return findMax(rt->left);
+		}
+	}
+	else if(rt->data > key) // go to left
+	{
+		return inorderPredecessor(rt->left, pre, key);
+
+	}
+	else
+	{
+		pre = rt;
+		return inorderPredecessor(rt->right, pre, key);
+	}
+
+	return pre;
+}
+
 int main() 
 {
 	return 0;
