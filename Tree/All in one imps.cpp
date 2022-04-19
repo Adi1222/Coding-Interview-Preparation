@@ -1087,6 +1087,81 @@ Node* cloneBT(Node* rt, unordered_map<Node*, Node*> &mp)
 }
 
 
+// vertical sum of BT using DLL Approach
+void updateDLLwithVerticalSum(TreeNode* root, ListNode* curr)
+{
+    // base case
+    if (!root) {
+        return;
+    }
+ 
+
+    curr->data += root->data;
+ 
+ 
+    if (root->left && !curr->prev) {
+        curr->prev = new ListNode(0, nullptr, curr);
+    }
+ 
+ 
+    if (root->right && !curr->next) {
+        curr->next = new ListNode(0, curr, nullptr);
+    }
+ 
+    updateDLLwithVerticalSum(root->left, curr->prev);
+    updateDLLwithVerticalSum(root->right, curr->next);
+}
+
+bool isComplete(Node* rt)
+{
+	if(rt == NULL)
+	{
+		return NULL;
+	}
+
+	queue<Node*> q;
+
+	q.push(rt);
+
+	bool flag = false;
+
+	while(!q.empty())
+	{
+		Node* temp = q.front();
+		q.pop();
+		
+		if(flag && (temp->left || temp->right))
+		{
+			return false;
+		}
+
+		if(temp->left == NULL && temp->right)
+		{
+			return false;
+		}
+
+		if(temp->left)
+		{
+			q.push(temp->left);
+		}
+		else
+		{
+			flag = true;
+		}
+
+		if(temp->right)
+		{
+			q.push(temp->right);
+		}
+		else
+		{
+			flag = true;
+		}
+	}
+
+	return true;	
+}
+
 int main()
 {
 	// your code goes here
