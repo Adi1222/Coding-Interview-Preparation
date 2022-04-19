@@ -1162,6 +1162,60 @@ bool isComplete(Node* rt)
 	return true;	
 }
 
+
+bool checkChildrenSumProperty(Node* rt)
+{
+	if (rt == NULL)
+	{
+		return true;
+	}
+
+	if(rt->left == NULL && rt->right == NULL)
+	{
+		return rt;
+	}
+
+	if(!rt->left || !rt->right)
+	{
+		if(rt->left == NULL)
+		{
+			return rt->data == rt->right->data;
+		}
+		else
+		{
+			return rt->data == rt->left->data;
+		}
+	}
+
+	
+	return (rt->data == rt->left->data + rt->right->data) && checkChildrenSumProperty(rt->left) && checkChildrenSumProperty(rt->right);	
+}
+
+
+int ChildrenSumProperty(Node* root)
+{
+    // base case: empty tree
+    if (root == nullptr) {
+        return 0;
+    }
+ 
+    // base case: leaf node
+    if (root->left == nullptr && root->right == nullptr) {
+        return root->data;
+    }
+ 
+    int left = hasChildrenSumProperty(root->left);
+    int right = hasChildrenSumProperty(root->right);
+ 
+    if (left != INT_MIN && right != INT_MIN && root->data == left + right) {
+        return root->data;
+    }
+ 
+    return INT_MIN;
+}
+
+
+
 int main()
 {
 	// your code goes here
