@@ -437,7 +437,7 @@ pair<Node*, Node*> findPreSuc(Node* rt, Node* pre, Node* suc, int key)
 		{
 			suc = findMin(rt->right);
 		}
-		
+
 	}
 
 	else if(rt->data > key)
@@ -452,6 +452,27 @@ pair<Node*, Node*> findPreSuc(Node* rt, Node* pre, Node* suc, int key)
 	}
 
 	return {pre, suc};
+}
+
+
+void printlevel(Node* rt, Node* node, int level)
+{
+	if(rt == NULL)
+	{
+		return;
+	}
+
+	if(level == 1)
+	{
+		print(rt->data);
+		return;
+	}
+
+	if( !(rt->left && rt->left == node) || (rt->right && rt->right == node) )
+	{
+		printlevel(rt->left, node, level - 1);
+		printlevel(rt->right, node, level - 1);
+	}
 }
 
 int main() 
