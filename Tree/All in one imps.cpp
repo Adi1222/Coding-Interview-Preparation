@@ -1055,9 +1055,36 @@ int solve(Node* node, int target, int k)
 }
 
 
+void updateRandomPtrs(Node* rt, unordered_map<Node*, Node*> &mp)
+{
+
+	if(mp[rt] == NULL)
+	{
+		return NULL;
+	}
+
+	mp[rt]->random = mp[rt->random];
+
+	updateRandomPtrs(rt->left, mp);
+	updateRandomPtrs(rt->right, mp);
+
+}
 
 
+Node* cloneBT(Node* rt, unordered_map<Node*, Node*> &mp)
+{
+	if(rt == NULL)
+	{
+		return NULL;
+	}
 
+	mp[rt] = new Node(rt->data);
+
+	mp[rt]->left = cloneBT(rt->left, mp);
+	mp[rt]->right = cloneBT(rt->right, mp);
+	
+	return mp[rt];
+}
 
 
 int main()
