@@ -419,6 +419,41 @@ Node* inorderSuccessor(Node* rt, Node* succ, int key)
 	return succ;
 }
 
+pair<Node*, Node*> findPreSuc(Node* rt, Node* pre, Node* suc, int key)
+{
+	if(rt == NULL)
+	{
+		return make_pair(NULL, NULL);
+	}
+
+	if(rt->data == key)
+	{
+		if(rt->left != NULL)
+		{
+			pre = findMax(rt->left);
+		}
+
+		if(rt->right != NULL)
+		{
+			suc = findMin(rt->right);
+		}
+		
+	}
+
+	else if(rt->data > key)
+	{
+		suc = rt;
+		return findPreSuc(rt->left, pre, suc, key);
+	}
+	else 
+	{
+		pre = rt;
+		return findPreSuc(rt->right, pre, suc, key);
+	}
+
+	return {pre, suc};
+}
+
 int main() 
 {
 	return 0;
