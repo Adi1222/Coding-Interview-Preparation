@@ -393,6 +393,32 @@ Node* inorderPredecessor(Node* rt, Node* pre, int key)
 	return pre;
 }
 
+Node* inorderSuccessor(Node* rt, Node* succ, int key)
+{
+	if(rt==NULL)
+	{
+		return rt;
+	}
+
+	if(rt->data == key)
+	{
+		if(rt->right)
+		{
+			return findMin(rt->right);
+		}
+	}
+	else if(rt->data > key)
+	{
+		succ = rt;
+		return inorderSuccessor(rt->left, succ, key);
+	}
+	else{
+		return inorderSuccessor(rt->right, succ, key);
+	}
+
+	return succ;
+}
+
 int main() 
 {
 	return 0;
